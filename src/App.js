@@ -44,18 +44,21 @@ import StudentTable from "./components/StudentTable";
 
 import Form from "./pages/form";
 import PromiseDemo from "./pages/PromiseDemo";
+import { StudentContextProvider } from "./store/StudentContext";
 
 function App() {
   return (
+    <StudentContextProvider>
     <BrowserRouter>
       <Routes>
         
         <Route exact path="/" element={<Form />} />
         <Route exact path="/" element={<PromiseDemo />} />
          
-        <Route exact path="/" element={<StudentTable />} /> 
+        <Route exact path="/StudentTable" element={<StudentTable />} /> 
       </Routes>
     </BrowserRouter>
+    </StudentContextProvider>
   );
 }
 

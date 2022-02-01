@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,20 +8,33 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { LinearProgress } from "@mui/material";
 import { getStudentsData } from "../utils/api";
+import StudentContext from "../store/StudentContext";
 
 export default function StudentsTable() {
   const [loading, setLoading] = useState(true);
   const [studentsData, setStudentsData] = useState([]);
-
-  useEffect(() => {
+ const ctx= useContext(StudentContext);
+ console.log(ctx)
+ 
+ 
+ 
+ useEffect(() => {
     getStudentsData()
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-          console.log(data)
+        console.log(data);
+        const keysList = Object.keys(data);
+        const dataList = [];
+        keysList.map((key) => {
+          dataList.push(data[key]);
+        });
+        console.log(dataList);
+        setStudentsData(dataList)
+        setLoading(false)
       });
-  });
+  },[]);
 
   return (
     <>
@@ -43,13 +56,12 @@ export default function StudentsTable() {
             <TableBody>
               {studentsData.map((row) => (
                 <TableRow
-                  key={row.firstName}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell align="right">{row.firstName}</TableCell>
-                  <TableCell align="right">{row.lastName}</TableCell>
-                  <TableCell align="right">{row.gender}</TableCell>
-                  <TableCell align="right">{row.age}</TableCell>
+                  <TableCell /* align="right" */>{row.firstName}</TableCell>
+                  <TableCell /* align="right" */>{row.lastName}</TableCell>
+                  <TableCell /* align="right" */>{row.gender}</TableCell>
+                  <TableCell /* align="right" */>{row.age}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
