@@ -38,28 +38,46 @@ gender:"female"},
     
   );
 }
-export default App;*/
+export default App;
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import StudentTable from "./components/StudentTable";
 
-import Form from "./pages/form";
+import form from "./pages/form";
 import PromiseDemo from "./pages/PromiseDemo";
+import StudentsTable from "./pages/StudentsTable";
 import { StudentContextProvider } from "./store/StudentContext";
+import CardMenu from "./pages/CardMenu";
 
 function App() {
   return (
     <StudentContextProvider>
-    <BrowserRouter>
-      <Routes>
-        
-        <Route exact path="/" element={<Form />} />
-        <Route exact path="/" element={<PromiseDemo />} />
+      <BrowserRouter>
+        <Routes>
          
-        <Route exact path="/StudentTable" element={<StudentTable />} /> 
-      </Routes>
-    </BrowserRouter>
+          
+          <Route exact path="/form" element={<form />} />
+          <Route exact path="/promise" element={<PromiseDemo />} />
+          <Route exact path="/studentstable" element={<StudentsTable />} />
+          <Route exact path="/card" element={<CardMenu />} />
+        </Routes>
+      </BrowserRouter>
     </StudentContextProvider>
   );
 }
 
-export default App;
+export default App;*/
+
+import Message from './components/Message';
+import React from 'react';
+import Greet from './components/Greet';
+import TableA from './components/TableA';
+function App(){
+ return(
+   <div>
+    <TableA/>
+     
+   </div> 
+  );
+} export default App;
+// <Greet />
+// <Message name="sonal"/>
+// <Message/>
